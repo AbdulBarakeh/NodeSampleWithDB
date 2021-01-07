@@ -1,6 +1,10 @@
 var mongoose = require("mongoose");
-var mongoURI = "mongodb+srv://abduldb:abduldb123@cluster0.zfzf3.mongodb.net/test";
-mongoose.connect(mongoURI);
+var mongoURI = "mongodb+srv://abduldb:abduldb123@cluster0.zfzf3.mongodb.net/test" 
+// mongoose.connect(mongoURI);
+
+mongoose.connect("mongodb+srv://abduldb:abduldb123@cluster0.zfzf3.mongodb.net/test"  || 'mongodb://localhost:27017/TodoApp', { useNewUrlParser: true })
+        .then(connect => console.log('connected to mongodb..'))
+        .catch(e => console.log('could not connect to mongodb', e))
 
 mongoose.connection.on("connected", () => {
   console.log(`Mongoose connected to ${mongoURI}`);
