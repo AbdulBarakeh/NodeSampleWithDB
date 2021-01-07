@@ -1,8 +1,7 @@
 var mongoose = require("mongoose");
-var mongoURI = "mongodb+srv://abduldb:abduldb123@cluster0.zfzf3.mongodb.net/test" 
+var mongoURI = process.env.MONGODB_URI;
+//"mongodb+srv://abduldb:abduldb123@cluster0.zfzf3.mongodb.net/test?retryWrites=true&w=majority" 
 mongoose.connect(mongoURI)
-        .then(connect => console.log('connected to mongodb..'))
-        .catch(e => console.log('could not connect to mongodb', e))
 
 mongoose.connection.on("connected", () => {
   console.log(`Mongoose connected to ${mongoURI}`);
@@ -27,12 +26,12 @@ process.on("SIGINT", () => {
     process.exit(0);
   });
 });
-// // For Herokuapp termination
-// process.on("SIGTERM", () => {
-//   gracefulShutdown("Herokuapp shutdown", () => {
-//     process.exit(0);
-//   });
-// });
+// For Herokuapp termination
+process.on("SIGTERM", () => {
+  gracefulShutdown("Herokuapp shutdown", () => {
+    process.exit(0);
+  });
+});
 
 const gracefulShutdown = (msg, callback) => {
   mongoose.connection.close(() => {
