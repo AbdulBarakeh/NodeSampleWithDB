@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div>
+        <a href="/">back to menu</a>
+    </div>
+    <div>
+        <h2>See Students</h2>
+        <ul>
+            <% students.forEach(student=> { %>
+        
+                <li>
+                    <%= student.Name%>
+                    || 
+                    <%= student.FieldOfStudy%>
+                </li>
+
+                <% }); %>
+        </ul>
+    </div>
+  </body>
+</html>
