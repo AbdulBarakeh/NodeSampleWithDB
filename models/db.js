@@ -1,7 +1,9 @@
 var mongoose = require("mongoose");
-var mongoURI = process.env.MONGODB_URI;
+// var mongoURI = process.env.MONGODB_URI;
+var mongoURI = "mongodb://localhost:27017/test"
 //"mongodb+srv://abduldb:abduldb123@cluster0.zfzf3.mongodb.net/test?retryWrites=true&w=majority" 
-mongoose.connect(mongoURI)
+
+mongoose.connect(mongoURI,{useNewUrlParser: true, useUnifiedTopology: true})
 
 mongoose.connection.on("connected", () => {
   console.log(`Mongoose connected to ${mongoURI}`);
