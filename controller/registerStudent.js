@@ -1,7 +1,7 @@
 const mongoose = require('../models/db');
 var model = require('../models/Schemas/Students');
 
-exports.register = (req, res) => {
+exports.register = (req, res,next) => {
     const db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error:'));
     console.dir('mongoose connected.')
@@ -16,13 +16,11 @@ exports.register = (req, res) => {
       }
       else{
         student.save(function (err) {
-          if (err) return console.dir(err) 
+          if (err) return console.dir(err)
         });
-        // handleError(err);
-        res.redirect('/registerStudent');
       }
     })
-
+    res.redirect('/registerStudent');
 }
 
 exports.getStudents = (req, res) => {
